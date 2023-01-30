@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:multiprovider/views/detail/detail_product.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,7 +10,10 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: MyHomeApp());
+    return MaterialApp(
+      home: MyHomeApp(),
+      routes: {DetailProduct.route: (context) => DetailProduct()},
+    );
   }
 }
 
@@ -24,7 +28,10 @@ class MyHomeApp extends StatelessWidget {
               crossAxisCount: 2, mainAxisSpacing: 10, crossAxisSpacing: 10),
           itemBuilder: (context, index) {
             return GridTile(
-              child: Container(
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pushNamed(DetailProduct.route);
+                },
                 child: Image.asset("image/qt.jpg"),
               ),
               footer: GridTileBar(
