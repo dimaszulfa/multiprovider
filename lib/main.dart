@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:multiprovider/models/product.dart';
 import 'package:multiprovider/views/detail/detail_product.dart';
 
 void main() {
@@ -18,13 +19,21 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomeApp extends StatelessWidget {
+  final List<Product> dataList = List.generate(
+      100,
+      (index) => Product(
+          name: "product$index",
+          title: "title$index",
+          price: 1000.0 + index.toDouble(),
+          qty: index));
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("Multi Provider")),
+        appBar: AppBar(title: const Text("Multi Provider")),
         body: GridView.builder(
-          itemCount: 100,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          itemCount: dataList.length,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2, mainAxisSpacing: 10, crossAxisSpacing: 10),
           itemBuilder: (context, index) {
             return GridTile(
@@ -37,7 +46,9 @@ class MyHomeApp extends StatelessWidget {
               footer: GridTileBar(
                 backgroundColor: Colors.redAccent,
                 title: Text(
-                  "Product 1",
+                  (dataList.isNotEmpty)
+                      ? dataList[index].title
+                      : "Tidak ada data",
                   textAlign: TextAlign.center,
                 ),
                 leading: IconButton(
