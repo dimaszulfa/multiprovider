@@ -37,11 +37,12 @@ class MyHomeApp extends StatelessWidget {
               crossAxisCount: 2, mainAxisSpacing: 10, crossAxisSpacing: 10),
           itemBuilder: (context, index) {
             return GridTile(
+              // ignore: sort_child_properties_last
               child: GestureDetector(
                 onTap: () {
                   Navigator.of(context).pushNamed(DetailProduct.route);
                 },
-                child: Image.asset("image/qt.jpg"),
+                child: Image.asset("image/qttt.jpg"),
               ),
               footer: GridTileBar(
                 backgroundColor: Colors.redAccent,
